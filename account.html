@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clothing - My Account</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Clothing</h1>
+    <nav>
+      <a href="index.html" title="Home" aria-label="Home">&#127968;</a>
+      <a href="products.html" title="Products" aria-label="Products">&#128085;</a>
+      <a href="cart.html" id="cart-link" title="Cart" aria-label="Cart">&#128722;<span id="cart-badge" class="cart-count"></span></a>
+      <a href="wishlist.html" title="Wishlist" aria-label="Wishlist">&#10084;&#65039;</a>
+      <a href="account.html" title="Account" aria-label="Account">&#128100;</a>
+      <a href="contact.html" title="Contact" aria-label="Contact">&#9993;&#65039;</a>
+      <a href="aboutus.html" title="About Us" aria-label="About Us">&#8505;&#65039;</a>
+    </nav>
+  </header>
+
+  <section class="hero account">
+    <h2>My Account</h2>
+
+    <!-- Logged out -->
+    <div id="auth-box">
+      <div class="tabs">
+        <button type="button" id="tab-login" onclick="showTab('login')">Log In</button>
+        <button type="button" id="tab-register" class="off" onclick="showTab('register')">Sign Up</button>
+      </div>
+      <form id="login-form" onsubmit="doLogin(event)">
+        <label for="login-email">Email:</label>
+        <input type="email" id="login-email" required>
+        <label for="login-pass">Password:</label>
+        <input type="password" id="login-pass" required>
+        <button type="submit">Log In</button>
+      </form>
+      <form id="register-form" class="hidden" onsubmit="doRegister(event)">
+        <label for="reg-name">Full Name:</label>
+        <input type="text" id="reg-name" required>
+        <label for="reg-email">Email:</label>
+        <input type="email" id="reg-email" required>
+        <label for="reg-pass">Password (at least 6 characters):</label>
+        <input type="password" id="reg-pass" required minlength="6">
+        <label for="reg-pass2">Confirm Password:</label>
+        <input type="password" id="reg-pass2" required>
+        <button type="submit">Create Account</button>
+      </form>
+      <p id="auth-message" class="note"></p>
+    </div>
+
+    <!-- Logged in -->
+    <div id="user-box" class="hidden">
+      <div class="account-row">
+        <div>
+          <h3 id="user-name" style="margin:0"></h3>
+          <span id="user-email" class="note"></span>
+        </div>
+        <button type="button" class="remove-btn" onclick="doLogout()">Log Out</button>
+      </div>
+      <h3>Order History</h3>
+      <div id="orders"></div>
+      <p id="no-orders" class="empty-message">You have no orders yet.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-cols">
+      <div>
+        <h4>Clothing</h4>
+        <p>Everyday streetwear at affordable prices.</p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <a href="products.html#jackets">Jackets</a>
+        <a href="products.html#tshirts">T-Shirts</a>
+        <a href="products.html#caps">Caps</a>
+        <a href="products.html#shoes">Shoes</a>
+      </div>
+      <div>
+        <h4>Help</h4>
+        <a href="contact.html">Contact Us</a>
+        <a href="aboutus.html">About Us</a>
+        <a href="account.html">My Account &amp; Orders</a>
+        <p>Returns accepted within 7 days.</p>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p>Davao City, Philippines</p>
+        <p>clothing@example.com</p>
+      </div>
+    </div>
+    <p class="copyright">&copy; 2026 Clothing. All rights reserved.</p>
+  </footer>
+
+  <div id="toast" class="toast"></div>
+  <script src="site.js"></script>
+  <script>
+    function showTab(which) {
+      var login = which === "login";
+      document.getElementById("login-form").className = login ? "" : "hidden";
+      document.getElementById("register-form").className = login ? "hidden" : "";
+      document.getElementById("tab-login").className = login ? "" : "off";
+      document.getElementById("tab-register").className = login ? "off" : "";
+      document.getElementById("auth-message").innerHTML = "";
+    }
+
+    function peso(a) { return "\u20B1" + a.toLocaleString("en-PH", { minimumFractionDigits: 2 }); }
+
+    // Passwords are only hashed with a simple function: fine for a school demo, NOT real security.
+    function hash(text) {
+      var h = 0;
+      for (var i = 0; i < text.length; i++) {
+        h = (h * 31 + text.charCodeAt(i)) | 0;
+      }
+      return String(h);
+    }
+
+    function doRegister(event) {
+      event.preventDefault();
+      var msg = document.getElementById("auth-message");
+      var name = document.getElementById("reg-name").value.trim();
+      var email = document.getElementById("reg-email").value.trim().toLowerCase();
+      var pass = document.getElementById("reg-pass").value;
+      var pass2 = document.getElementById("reg-pass2").value;
+      var users = getUsers();
+
+      if (pass !== pass2) {
+        msg.innerHTML = "Passwords do not match.";
+        return;
+      }
+      for (var i = 0; i < users.length; i++) {
+        if (users[i].email === email) {
+          msg.innerHTML = "That email is already registered. Please log in.";
+          return;
+        }
+      }
+      users.push({ name: name, email: email, pass: hash(pass) });
+      localStorage.setItem("users", JSON.stringify(users));
+      localStorage.setItem("currentUser", JSON.stringify({ name: name, email: email }));
+      showAccount();
+      showToast("Welcome, " + name + "!");
+    }
+
+    function doLogin(event) {
+      event.preventDefault();
+      var msg = document.getElementById("auth-message");
+      var email = document.getElementById("login-email").value.trim().toLowerCase();
+      var pass = hash(document.getElementById("login-pass").value);
+      var users = getUsers();
+      for (var i = 0; i < users.length; i++) {
+        if (users[i].email === email && users[i].pass === pass) {
+          localStorage.setItem("currentUser", JSON.stringify({ name: users[i].name, email: email }));
+          showAccount();
+          showToast("Logged in");
+          return;
+        }
+      }
+      msg.innerHTML = "Wrong email or password.";
+    }
+
+    function doLogout() {
+      localStorage.removeItem("currentUser");
+      showAccount();
+      showToast("Logged out");
+    }
+
+    function showAccount() {
+      var user = currentUser();
+      document.getElementById("auth-box").className = user ? "hidden" : "";
+      document.getElementById("user-box").className = user ? "" : "hidden";
+      if (!user) {
+        return;
+      }
+      document.getElementById("user-name").innerHTML = esc(user.name);
+      document.getElementById("user-email").innerHTML = esc(user.email);
+
+      var all = [];
+      try { all = JSON.parse(localStorage.getItem("orders")) || []; } catch (e) {}
+      var box = document.getElementById("orders");
+      box.innerHTML = "";
+      var count = 0;
+      for (var i = all.length - 1; i >= 0; i--) {
+        var o = all[i];
+        if (o.email !== user.email) { continue; }
+        count++;
+        var items = "";
+        for (var k = 0; k < o.items.length; k++) {
+          items += "<li>" + esc(o.items[k].name) + " x " + o.items[k].qty + " - " + peso(o.items[k].price * o.items[k].qty) + "</li>";
+        }
+        box.innerHTML +=
+          "<div class='order-card'>" +
+            "<h4>" + esc(o.number) + " <span class='status'>Processing</span></h4>" +
+            "<small>" + esc(o.date) + "</small>" +
+            "<ul>" + items + "</ul>" +
+            "<p><strong>Total:</strong> " + peso(o.total) + " (" + esc(o.method) + ")</p>" +
+            "<p><strong>Deliver to:</strong> " + esc(o.address) + ", " + esc(o.city) + "</p>" +
+          "</div>";
+      }
+      document.getElementById("no-orders").style.display = count === 0 ? "block" : "none";
+    }
+
+    showAccount();
+  </script>
+</body>
+</html>

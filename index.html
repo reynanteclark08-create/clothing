@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clothing - Home</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Clothing</h1>
+    <nav>
+      <a href="index.html" title="Home" aria-label="Home">&#127968;</a>
+      <a href="products.html" title="Products" aria-label="Products">&#128085;</a>
+      <a href="cart.html" id="cart-link" title="Cart" aria-label="Cart">&#128722;<span id="cart-badge" class="cart-count"></span></a>
+      <a href="wishlist.html" title="Wishlist" aria-label="Wishlist">&#10084;&#65039;</a>
+      <a href="account.html" title="Account" aria-label="Account">&#128100;</a>
+      <a href="contact.html" title="Contact" aria-label="Contact">&#9993;&#65039;</a>
+      <a href="aboutus.html" title="About Us" aria-label="About Us">&#8505;&#65039;</a>
+    </nav>
+  </header>
+
+  <!-- Banner -->
+  <section class="banner">
+    <h2>Welcome to Clothing</h2>
+    <p>Discover amazing deals on apparel today!</p>
+    <a href="products.html" class="btn">Shop Now</a>
+  </section>
+
+  <!-- Categories -->
+  <section class="hero home">
+    <h3>Shop by Category</h3>
+    <div class="categories">
+      <a href="products.html#jackets">Jackets</a>
+      <a href="products.html#tshirts">T-Shirts</a>
+      <a href="products.html#caps">Caps</a>
+      <a href="products.html#shoes">Shoes</a>
+      <a href="products.html#accessories">Accessories</a>
+    </div>
+  </section>
+
+  <!-- Featured products -->
+  <section class="hero home">
+    <h3>Featured Products</h3>
+    <div class="grid">
+
+      <div class="product-card">
+        <img src="https://storage.googleapis.com/hypeclothinga-media/__sized__/products/Chrome_Hearts__Soap__Water_Zip_Hoodie_hype_clothinga_limited_edition.002-thumbnail-1080x1080-70.jpeg" alt="Zip-Up Hoodie">
+        <h4>Zip-Up Hoodie</h4>
+        <p>₱1,600.00</p>
+        <button onclick="addToCart('Zip-Up Hoodie', 1600)">Add to Cart</button>
+      </div>
+
+      <div class="product-card">
+        <img src="https://culture-circle.gumlet.io/image-hygiene-v1/20260730/size-delivery/products/155911/3157546-e121b082fbc6.webp" alt="T-Shirt 1">
+        <h4>T-Shirt 1</h4>
+        <p>₱800.00</p>
+        <button onclick="addToCart('T-Shirt 1', 800)">Add to Cart</button>
+      </div>
+
+      <div class="product-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRM2QK2SMwptsYhIM4LcYhR58u-g6a-E_00rXQ7nnFsNg&s=10" alt="Cap 1">
+        <h4>Cap 1</h4>
+        <p>₱500.00</p>
+        <button onclick="addToCart('Cap 1', 500)">Add to Cart</button>
+      </div>
+
+    </div>
+    <a href="products.html" class="btn">View All Products</a>
+  </section>
+
+  <!-- Why shop with us -->
+  <section class="perks">
+    <div class="perk-box">
+      <h4>Fast Delivery</h4>
+      <p>We deliver to your door.</p>
+    </div>
+    <div class="perk-box">
+      <h4>Easy Returns</h4>
+      <p>Returns accepted within 7 days.</p>
+    </div>
+    <div class="perk-box">
+      <h4>Flexible Payment</h4>
+      <p>Cash on delivery, GCash, Maya or card.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-cols">
+      <div>
+        <h4>Clothing</h4>
+        <p>Everyday streetwear at affordable prices.</p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <a href="products.html#jackets">Jackets</a>
+        <a href="products.html#tshirts">T-Shirts</a>
+        <a href="products.html#caps">Caps</a>
+        <a href="products.html#shoes">Shoes</a>
+      </div>
+      <div>
+        <h4>Help</h4>
+        <a href="contact.html">Contact Us</a>
+        <a href="aboutus.html">About Us</a>
+        <a href="account.html">My Account &amp; Orders</a>
+        <p>Returns accepted within 7 days.</p>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p>Davao City, Philippines</p>
+        <p>clothing@example.com</p>
+      </div>
+    </div>
+    <p class="copyright">&copy; 2026 Clothing. All rights reserved.</p>
+  </footer>
+
+  <div id="toast" class="toast"></div>
+  <script src="site.js"></script>
+</body>
+</html>

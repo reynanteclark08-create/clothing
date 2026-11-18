@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clothing - Products</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Clothing</h1>
+    <nav>
+      <a href="index.html" title="Home" aria-label="Home">&#127968;</a>
+      <a href="products.html" title="Products" aria-label="Products">&#128085;</a>
+      <a href="cart.html" id="cart-link" title="Cart" aria-label="Cart">&#128722;<span id="cart-badge" class="cart-count"></span></a>
+      <a href="wishlist.html" title="Wishlist" aria-label="Wishlist">&#10084;&#65039;</a>
+      <a href="account.html" title="Account" aria-label="Account">&#128100;</a>
+      <a href="contact.html" title="Contact" aria-label="Contact">&#9993;&#65039;</a>
+      <a href="aboutus.html" title="About Us" aria-label="About Us">&#8505;&#65039;</a>
+    </nav>
+  </header>
+
+  <section class="hero products">
+    <h2>Our Products</h2>
+
+    <!-- Category links -->
+    <div class="categories">
+      <a href="#jackets">Jackets</a>
+      <a href="#tshirts">T-Shirts</a>
+      <a href="#caps">Caps</a>
+      <a href="#shoes">Shoes</a>
+      <a href="#accessories">Accessories</a>
+    </div>
+
+    <!-- Search and sort -->
+    <div class="toolbar">
+      <input type="text" id="search" placeholder="Search products..." oninput="filterProducts()">
+      <select id="sort" onchange="sortProducts()">
+        <option value="default">Sort by: Default</option>
+        <option value="low">Price: Low to High</option>
+        <option value="high">Price: High to Low</option>
+        <option value="name">Name: A to Z</option>
+      </select>
+    </div>
+
+    <!-- JACKETS -->
+    <div class="group" id="jackets">
+      <h3 class="category-title">Jackets</h3>
+      <div class="grid">
+        <div class="product-card" data-name="zip-up hoodie" data-price="1600" data-order="1">
+          <img src="https://storage.googleapis.com/hypeclothinga-media/__sized__/products/Chrome_Hearts__Soap__Water_Zip_Hoodie_hype_clothinga_limited_edition.002-thumbnail-1080x1080-70.jpeg" alt="Zip-Up Hoodie">
+          <h4>Zip-Up Hoodie</h4>
+          <p>₱1,600.00</p>
+          <button onclick="addToCart('Zip-Up Hoodie', 1600)">Add to Cart</button>
+        </div>
+        <div class="product-card" data-name="white zip-up hoodie" data-price="1500" data-order="2">
+          <img src="https://endlesssupply.com/cdn/shop/files/chrome-hearts-t-bar-script-white-zip-up-hoodie-5720517_097e69e3-d7f0-43a4-9758-fb4de14ca928.webp?v=1792024222&width=533" alt="White Zip-Up Hoodie">
+          <h4>White Zip-Up Hoodie</h4>
+          <p>₱1,500.00</p>
+          <button onclick="addToCart('White Zip-Up Hoodie', 1500)">Add to Cart</button>
+        </div>
+        <div class="product-card" data-name="jacket 3" data-price="1700" data-order="3">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQG1j2mfGrWuavn0gPr_qfcxJir_v6wZU6YFGjQYok6dOzcryoP6T8RyJLY&s=10" alt="Jacket 3">
+          <h4>Jacket 3</h4>
+          <p>₱1,700.00</p>
+          <button onclick="addToCart('Jacket 3', 1700)">Add to Cart</button>
+        </div>      </div>
+    </div>
+    <!-- T-SHIRTS -->
+    <div class="group" id="tshirts">
+      <h3 class="category-title">T-Shirts</h3>
+      <div class="grid">
+        <div class="product-card" data-name="t-shirt 1" data-price="800" data-order="4">
+          <img src="https://culture-circle.gumlet.io/image-hygiene-v1/20260730/size-delivery/products/155911/3157546-e121b082fbc6.webp" alt="T-Shirt 1">
+          <h4>T-Shirt 1</h4>
+          <p>₱800.00</p>
+          <button onclick="addToCart('T-Shirt 1', 800)">Add to Cart</button>
+        </div>
+        <div class="product-card" data-name="t-shirt 2" data-price="850" data-order="5">
+          <img src="https://chromeheartswear.com/wp-content/uploads/2026/04/product_image_clear_compressed.jpg" alt="T-Shirt 2">
+          <h4>T-Shirt 2</h4>
+          <p>₱850.00</p>
+          <button onclick="addToCart('T-Shirt 2', 850)">Add to Cart</button>
+        </div>
+        <div class="product-card" data-name="horseshoe logo tee" data-price="900" data-order="6">
+          <img src="https://cdn.shopify.com/s/files/1/0640/3846/9846/files/chrome-hearts-las-vegas-exclusive-horseshoe-logo-short-sleeve-t-shirt-tee-584951_37b05067-d38a-4b99-a73b-5ef4937ebb58.png?v=1738325910?width=3840&quality=75" alt="Horseshoe Logo Tee">
+          <h4>Horseshoe Logo Tee</h4>
+          <p>₱900.00</p>
+          <button onclick="addToCart('Horseshoe Logo Tee', 900)">Add to Cart</button>
+        </div>
+        <div class="product-card" data-name="printed tee" data-price="950" data-order="7">
+          <img src="https://comme-des-garcons.ca/wp-content/uploads/2025/09/Chrome-Hearts-Comme-Des-Garcons-Chrome-Hearts-Printed-T-Shirt.png" alt="Printed Tee">
+          <h4>Printed Tee</h4>
+          <p>₱950.00</p>
+          <button onclick="addToCart('Printed Tee', 950)">Add to Cart</button>
+        </div>      </div>
+    </div>
+    <!-- CAPS -->
+    <div class="group" id="caps">
+      <h3 class="category-title">Caps</h3>
+      <div class="grid">
+        <div class="product-card" data-name="cap 1" data-price="500" data-order="8">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRM2QK2SMwptsYhIM4LcYhR58u-g6a-E_00rXQ7nnFsNg&s=10" alt="Cap 1">
+          <h4>Cap 1</h4>
+          <p>₱500.00</p>
+          <button onclick="addToCart('Cap 1', 500)">Add to Cart</button>
+        </div>
+        <div class="product-card" data-name="cap 2" data-price="550" data-order="9">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsk7pDy-fvEB3axbaVXcgPLUuCuMhaP4jdtZ0ZvIDMAg&s=10" alt="Cap 2">
+          <h4>Cap 2</h4>
+          <p>₱550.00</p>
+          <button onclick="addToCart('Cap 2', 550)">Add to Cart</button>
+        </div>
+        <div class="product-card" data-name="cap 3" data-price="600" data-order="10">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl9Rn_yBzYAqNZLaeyklW9aclpfwR7sHeuwje75AtWww&s=10" alt="Cap 3">
+          <h4>Cap 3</h4>
+          <p>₱600.00</p>
+          <button onclick="addToCart('Cap 3', 600)">Add to Cart</button>
+        </div>
+        <div class="product-card" data-name="cap 4" data-price="650" data-order="11">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQX2zFI-vYlWzssHZo7yy4FKFpQ1LuIrtMTy6IpQD5eg&s=10" alt="Cap 4">
+          <h4>Cap 4</h4>
+          <p>₱650.00</p>
+          <button onclick="addToCart('Cap 4', 650)">Add to Cart</button>
+        </div>
+        <div class="product-card" data-name="cap 5" data-price="700" data-order="12">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSunekvuF7ulIhdQwx57TfEeQNsaz62zMo3SoeGM711tQ&s=10" alt="Cap 5">
+          <h4>Cap 5</h4>
+          <p>₱700.00</p>
+          <button onclick="addToCart('Cap 5', 700)">Add to Cart</button>
+        </div>      </div>
+    </div>
+    <!-- SHOES -->
+    <div class="group" id="shoes">
+      <h3 class="category-title">Shoes</h3>
+      <div class="grid">
+        <div class="product-card" data-name="shoes 1" data-price="2200" data-order="13">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1IlX8aA41hFITh88rnuI2NAzvSkH-NJ6VAlnYiqOGaA&s=10" alt="Shoes 1">
+          <h4>Shoes 1</h4>
+          <p>₱2,200.00</p>
+          <button onclick="addToCart('Shoes 1', 2200)">Add to Cart</button>
+        </div>
+        <div class="product-card" data-name="shoes 2" data-price="2400" data-order="14">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_GoiOxKT8onVNHGL-2Q7P3NbZsWBGSE8z0zKJ7j4nMQ&s=10" alt="Shoes 2">
+          <h4>Shoes 2</h4>
+          <p>₱2,400.00</p>
+          <button onclick="addToCart('Shoes 2', 2400)">Add to Cart</button>
+        </div>
+        <div class="product-card" data-name="shoes 3" data-price="2600" data-order="15">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkk8NCsJ_DR4wV_GSBJPpqL0Si5lEPvh4INZ_-ssq_7Q&s=10" alt="Shoes 3">
+          <h4>Shoes 3</h4>
+          <p>₱2,600.00</p>
+          <button onclick="addToCart('Shoes 3', 2600)">Add to Cart</button>
+        </div>      </div>
+    </div>
+    <!-- ACCESSORIES -->
+    <div class="group" id="accessories">
+      <h3 class="category-title">Accessories</h3>
+      <div class="grid">
+        <div class="product-card" data-name="accessory 1" data-price="400" data-order="16">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMOAZyx8OKDFaxiq9OQWDTB2ccOTQM9LA-PTX-T_ssUg&s=10" alt="Accessory 1">
+          <h4>Accessory 1</h4>
+          <p>₱400.00</p>
+          <button onclick="addToCart('Accessory 1', 400)">Add to Cart</button>
+        </div>
+        <div class="product-card" data-name="accessory 2" data-price="450" data-order="17">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk37XIwjKEQiYEmEyDB3rCRUpK7-JghaGLBcr9rqA88A&s=10" alt="Accessory 2">
+          <h4>Accessory 2</h4>
+          <p>₱450.00</p>
+          <button onclick="addToCart('Accessory 2', 450)">Add to Cart</button>
+        </div>
+        <div class="product-card" data-name="accessory 3" data-price="500" data-order="18">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRweN5CNCMX1N56bzVm0ZBu2NWL80KQ1p7MqaYKaRcPqQ&s=10" alt="Accessory 3">
+          <h4>Accessory 3</h4>
+          <p>₱500.00</p>
+          <button onclick="addToCart('Accessory 3', 500)">Add to Cart</button>
+        </div>      </div>
+    </div>
+
+    <p id="no-results" class="empty-message">No products found.</p>
+  </section>
+
+  <footer>
+    <div class="footer-cols">
+      <div>
+        <h4>Clothing</h4>
+        <p>Everyday streetwear at affordable prices.</p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <a href="products.html#jackets">Jackets</a>
+        <a href="products.html#tshirts">T-Shirts</a>
+        <a href="products.html#caps">Caps</a>
+        <a href="products.html#shoes">Shoes</a>
+      </div>
+      <div>
+        <h4>Help</h4>
+        <a href="contact.html">Contact Us</a>
+        <a href="aboutus.html">About Us</a>
+        <a href="account.html">My Account &amp; Orders</a>
+        <p>Returns accepted within 7 days.</p>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p>Davao City, Philippines</p>
+        <p>clothing@example.com</p>
+      </div>
+    </div>
+    <p class="copyright">&copy; 2026 Clothing. All rights reserved.</p>
+  </footer>
+
+  <div id="toast" class="toast"></div>
+  <script src="site.js"></script>
+</body>
+</html>
